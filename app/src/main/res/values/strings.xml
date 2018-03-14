@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">USICTAlmanac</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enrolment">Enrolment Number</string>
+    <string name="password">Password</string>
+    <string name="valid">abcdefghijklmnopqrstuvwxyz1234567890!@_</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="submit">Submit</string>
+    <string name="forgotpass">Forgot Password?</string>
+    <string name="conf_pass">Confirm Password</string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="course">Course</string>
+    <string name="branch">Branch</string>
+    <string name="year">Year</string>
+    <string name="cse">CSE</string>
+    <string name="it">IT</string>
+    <string name="ece">ECE</string>
+    <string name="mca">MCA</string>
+    <string name="btechmtech">B.Tech/M.Tech</string>
+    <string name="other">Other(please specify below)</string>
+</resources>
