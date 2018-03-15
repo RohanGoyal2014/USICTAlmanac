@@ -22,4 +22,5 @@
     <string name="mca">MCA</string>
     <string name="btechmtech">B.Tech/M.Tech</string>
     <string name="other">Other(please specify below)</string>
+    <string name="email">Email</string>
 </resources>

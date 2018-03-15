@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "763065059032",
+    "firebase_url": "https://usictalmanac.firebaseio.com",
+    "project_id": "usictalmanac",
+    "storage_bucket": "usictalmanac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763065059032:android:216b1e0a0f829532",
+        "android_client_info": {
+          "package_name": "com.example.rohangoyal2014.usictalmanac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763065059032-a073e4t691bm6dtot4cvb08nr3pme662.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rohangoyal2014.usictalmanac",
+            "certificate_hash": "6338bd51a30061ea8c70c181ab4b164c79e77737"
+          }
+        },
+        {
+          "client_id": "763065059032-n2fdf3p1dq30bgh0260cnd2more9tum8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKEe6xedC27R_ShabqWtDSoJub8zS77Wg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763065059032-n2fdf3p1dq30bgh0260cnd2more9tum8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
