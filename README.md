@@ -1,2 +1,2 @@
 # USICTAlmanac
-This repo includes the code that I must remember at all times when I encounter a problem
+This is for notifying USICTians about the events and workshops happening within the college
