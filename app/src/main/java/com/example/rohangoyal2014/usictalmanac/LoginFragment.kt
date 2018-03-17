@@ -27,8 +27,7 @@ class LoginFragment : Fragment() {
         pass=layout.findViewById<TextInputEditText>(R.id.pass)
         submit=layout.findViewById<TextView>(R.id.submit)
         submit?.setOnClickListener{
-            var res=false
-            res=Utilities.ValidationUtilities.empty_validator(context,enrol,getString(R.string.enrolment))
+            var res=Utilities.ValidationUtilities.empty_validator(context,enrol,getString(R.string.enrolment))
             if(res){
                 return@setOnClickListener
             }

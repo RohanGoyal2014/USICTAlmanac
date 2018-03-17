@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setUpToolbar()
         Utilities.FirebaseUtilites.mAuth= FirebaseAuth.getInstance()
     }
+
     private fun setUpToolbar(){
 
         viewPager?.adapter=MainActivityPagerAdapter(supportFragmentManager)

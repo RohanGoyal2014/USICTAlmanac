@@ -28,7 +28,7 @@ public class Utilities {
     }
     public static ArrayAdapter<String> getSpinnerData(Context context){
         ArrayList<String> arrayList=new ArrayList<>();
-        for(int i=0;i<5;++i){
+        for(int i=0;i<6;++i){
             arrayList.add(String.valueOf(i+1));
         }
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,arrayList);

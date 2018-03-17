@@ -23,4 +23,6 @@
     <string name="btechmtech">B.Tech/M.Tech</string>
     <string name="other">Other(please specify below)</string>
     <string name="email">Email</string>
+    <string name="error">Something went wrong!!</string>
+    <string name="loading">Loading</string>
 </resources>

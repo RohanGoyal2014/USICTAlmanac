@@ -11,10 +11,17 @@
         android:scaleType="centerCrop"
         android:layout_height="match_parent"
         android:src="@drawable/pattern"/>
+    <include
+        layout="@layout/progress"
+        android:visibility="gone"
+        android:id="@+id/progress_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/registration_card"
         android:layout_margin="8dp"
         app:cardElevation="50dp">
         <LinearLayout
@@ -51,7 +58,7 @@
                     android:id="@+id/fname"
                     android:layout_width="match_parent"
                     android:digits="@string/valid"
-                    android:inputType="number"
+                    android:inputType="textPersonName"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -63,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:digits="@string/valid"
                     android:id="@+id/lname"
-                    android:inputType="number"
+                    android:inputType="textPersonName"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
                     <android.support.design.widget.TextInputLayout
@@ -96,6 +103,7 @@
                         android:layout_margin="8dp"
                         android:textSize="18sp"/>
                     <RadioGroup
+                        android:id="@+id/course_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -131,6 +139,7 @@
                         android:layout_margin="8dp"
                         android:textSize="18sp"/>
                     <RadioGroup
+                        android:id="@+id/branch_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
