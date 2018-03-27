@@ -81,7 +81,6 @@ class RegisterFragment : Fragment() {
         arr?.add(Pair(conf_pass!!,getString(R.string.conf_pass)))
 
         submit?.setOnClickListener {
-            startProgress()
             var res=false
             for (i:Pair<TextInputEditText,String> in arr!!){
                 res=Utilities.ValidationUtilities.empty_validator(context,i.first,i.second);
@@ -113,7 +112,6 @@ class RegisterFragment : Fragment() {
             else {
                 createUser()
             }
-            endProgress()
         }
         return layout
     }
@@ -133,6 +131,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun createUser(){
+        startProgress()
         Utilities.FirebaseUtilites.mAuth.createUserWithEmailAndPassword(email?.text.toString().trim(),pass?.text.toString().trim())
                 .addOnCompleteListener{
                     task: Task<AuthResult> ->
@@ -141,6 +140,7 @@ class RegisterFragment : Fragment() {
                         addToDatabase(Utilities.FirebaseUtilites.mAuth.currentUser)
                         updateUI(Utilities.FirebaseUtilites.mAuth.currentUser)
                     } else {
+                        endProgress()
                         Log.e(TAG,"Failed",task.exception)
                         if(task.exception.toString().contains("FirebaseAuthUserCollisionException")){
                             Toast.makeText(context,"This user already exists",Toast.LENGTH_SHORT).show()
@@ -182,8 +182,12 @@ class RegisterFragment : Fragment() {
             } else{
                 branch=other?.text.toString().trim()
             }
-            val userModel:UserModel=UserModel(displayName,enrolment,course,year,branch)
-            FirebaseDatabase.getInstance().reference.child("users").child(user.uid).setValue(userModel)
+            val userModel=UserModel(displayName,enrolment,course,year,branch)
+            FirebaseDatabase.getInstance().reference.child("users").child(user.uid).setValue(userModel).addOnCompleteListener{
+                task ->
+                endProgress()
+            }
+            FirebaseDatabase.getInstance().reference.child("enrolments").child(enrolment).setValue(user.email)
         }
     }
 
