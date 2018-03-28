@@ -16,6 +16,11 @@ import java.util.ArrayList;
  */
 
 public class Utilities {
+
+    public static final String FRAGMENT_SELECT_KEY="select_fragment";
+    public static final int FRAGMENT_SELECTOR_VALUE_ADD_EVENT=0;
+    public static final int FRAGMENT_SELECTOR_VALUE_ADD_ADMIN=0;
+
     public static class ValidationUtilities{
         public static boolean empty_validator(Context context, TextInputEditText editText, String s){
             if(editText.getText().toString().trim().isEmpty()){
