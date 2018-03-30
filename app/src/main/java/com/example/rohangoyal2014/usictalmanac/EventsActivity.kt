@@ -53,7 +53,7 @@ class EventsActivity : AppCompatActivity() {
         if(Utilities.FirebaseUtilites.mAuth.currentUser?.isEmailVerified==false){
             AlertDialog.Builder(this).setTitle("Verify Email")
                     .setMessage("We are sending you a verification Email")
-                    .setPositiveButton("OKAY",DialogInterface.OnClickListener{
+                    .setPositiveButton("OKAY",{
                         _, i ->
                         sendVerificationMail()
                     }).setCancelable(false).create().show()

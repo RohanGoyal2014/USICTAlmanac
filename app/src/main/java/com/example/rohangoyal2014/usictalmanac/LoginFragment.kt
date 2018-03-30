@@ -1,6 +1,7 @@
 package com.example.rohangoyal2014.usictalmanac
 
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -18,8 +19,13 @@ import com.google.firebase.auth.AuthResult
 import com.google.android.gms.tasks.Task
 import android.support.annotation.NonNull
 import android.support.design.widget.TabLayout
+import android.support.design.widget.TextInputLayout
+import android.support.v4.view.ViewGroupCompat
 import android.support.v7.widget.CardView
+import android.support.v7.widget.LinearLayoutCompat
 import android.util.Log
+import android.widget.EditText
+import android.widget.LinearLayout
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.database.DataSnapshot
@@ -27,6 +33,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.victor.loading.newton.NewtonCradleLoading
+import kotlinx.android.synthetic.main.fragment_login.*
 import java.net.URL
 
 
@@ -46,6 +53,7 @@ class LoginFragment : Fragment() {
     var progressView:View?=null
     var NewtonLoader:NewtonCradleLoading?=null
     var tabLayout: TabLayout?=null
+    var forgotPassButton:TextView?=null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -58,6 +66,7 @@ class LoginFragment : Fragment() {
         card=layout.findViewById<CardView>(R.id.login_card)
         progressView=layout.findViewById(R.id.progress_2)
         NewtonLoader=layout.findViewById(R.id.newton_cradle_loading)
+        forgotPassButton=layout.findViewById(R.id.forgot_pass)
         submit?.setOnClickListener{
             var res=Utilities.ValidationUtilities.empty_validator(context,enrol,getString(R.string.enrolment))
             if(res){
@@ -71,7 +80,60 @@ class LoginFragment : Fragment() {
                 startLogin(enrol?.text.toString().trim(),pass?.text.toString().trim())
             }
         }
+        forgotPassButton?.setOnClickListener{
+            val linearLayout=LinearLayout(context)
+            val padding=context.resources.getDimensionPixelSize(R.dimen.dp_16)
+            linearLayout.setPadding(padding,padding,padding,padding)
+            val textInputLayout=TextInputLayout(context)
+            val editText=TextInputEditText(context)
+            textInputLayout.layoutParams= LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+            textInputLayout.hint=getString(R.string.enrolment)
+            textInputLayout.addView(editText)
+            linearLayout.addView(textInputLayout)
+            Log.d(TAG,"Clicked")
+            AlertDialog.Builder(context).setView(linearLayout).setTitle(getString(R.string.forgotpass))
+                    .setPositiveButton("SEND RESET MAIL",{
+                        _,_->
+                        sendResetMail(editText.text.toString().trim())
+                    })
+                    .setNegativeButton("EXIT",{
+                        _,_->
+
+                    }).setCancelable(false).create().show()
+        }
         return layout
+    }
+
+    private fun sendResetMail(enrol:String)
+    {
+        startProgress()
+        FirebaseDatabase.getInstance().reference.child("enrolments").child(enrol).addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot?) {
+                val mail=p0?.value
+                if(mail!=null) {
+                    Utilities.FirebaseUtilites.mAuth.sendPasswordResetEmail(mail.toString())
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    endProgress()
+                                    Toast.makeText(context,"Password Reset Mail sent",Toast.LENGTH_SHORT).show()
+                                }
+                                else {
+                                    endProgress()
+                                    Toast.makeText(context, getString(R.string.error), Toast.LENGTH_SHORT).show()
+                                    Log.e(TAG, getString(R.string.error))
+                                }
+                            }
+                } else{
+                    endProgress()
+                    Toast.makeText(context,getString(R.string.not_exists),Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError?) {
+                Toast.makeText(context,getString(R.string.error),Toast.LENGTH_SHORT).show()
+                endProgress()
+            }
+        })
     }
 
     private fun startProgress(){
